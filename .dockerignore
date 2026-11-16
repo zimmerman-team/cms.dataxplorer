@@ -7,3 +7,9 @@ node_modules/
 # Ignoring folders that might be used in starter templates
 data/
 backup/
+
+# Keep secrets, uploads and logs out of the image.
+.env.*
+public/uploads/*
+!public/uploads/.gitkeep
+*.log

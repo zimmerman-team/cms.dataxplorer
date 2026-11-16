@@ -1,3 +1,17 @@
+# CMS-DX
+
+## Running it
+
+This repo has the same `make` commands as the other DX repos, which [infra.dx](https://github.com/zimmerman-team/DX) clones side by side (`make repos` there).
+
+| Command | What it does |
+|---|---|
+| `make setup` | Install dependencies, create `.env` from `.env.example` |
+| `make dev` | Run Strapi on http://localhost:1337 (admin at `/admin`), with SQLite in `.tmp/data.db` |
+| `make build` | Build the Docker image, as CI does |
+
+`make dev` needs Node 18 (`nvm use`). Production runs the Docker image: CI builds it on every push (`.github/workflows/image.yaml`) and infra.dx deploys it with the `cms` profile, on Postgres, with uploads in a volume.
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
