@@ -2,6 +2,9 @@
 FROM node:22.23-alpine3.23 as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 ENV NODE_ENV=production
+# Alpine 3.23's libvips (8.17.3) meets sharp's minimum, so sharp would try to
+# compile itself against it and fail. Use the libvips sharp ships instead.
+ENV SHARP_IGNORE_GLOBAL_LIBVIPS=1
 
 WORKDIR /opt/
 COPY package.json yarn.lock ./
